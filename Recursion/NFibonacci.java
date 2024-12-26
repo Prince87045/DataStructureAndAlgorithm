@@ -1,5 +1,6 @@
 package Recursion;
 //Print Nth Fibonacci number
+//Time complexity - O(2^n)
 public class NFibonacci {
     public static int fibonacci(int n){
         if(n == 0 || n == 1){//Base Case
