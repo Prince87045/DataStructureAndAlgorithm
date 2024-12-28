@@ -16,8 +16,8 @@ public class FindOccurences {
         findAllOccurences(arr,key,idx+1,sb);//recursively call the function for the rest of the array
     }
     public static void main(String[] args) {
-        int arr[] = {1,5,7,9,10,6,8,5,3};
-        int key = 4;
+        int arr[] = {3,1,5,7,9,10,6,8,5,3,3};
+        int key = 3;
         findAllOccurences(arr,key,0,new StringBuilder(""));
     }
 }
