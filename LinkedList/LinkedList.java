@@ -1,5 +1,12 @@
 package LinkedList;
-
+/* Performed all linked list operations
+    add - addFirst,addLast,addInMiddle
+    remove - removeFirst,removeLast
+    search - iterative,recursive
+    reverse
+    find and remove Nth node from end - Nth node from end = (size-n+1)th node from start
+    check palindrome
+ */
 public class LinkedList {
     public static class Node {
         int data;
@@ -113,6 +120,46 @@ public class LinkedList {
             //key not found
             return -1;
         }
+
+        //Recursive Search - return index of key/element found
+        public int recSearch(int key){
+            return helper(head,key);
+        }
+
+        public int helper(Node head,int key){
+            if(head == null){
+                return -1;
+            }
+            if(head.data == key){
+                return 0;
+            }
+            int idx = helper(head.next, key);
+            if(idx == -1){
+                return -1;
+            }
+            return idx+1;
+        }    
+        public void reverse(){
+            Node prev = null;
+            Node curr = tail = head;
+            Node next;
+            while(curr != null){
+                next = curr.next;
+                curr.next = prev;
+                prev = curr;
+                curr = next;
+            }
+            head = prev;
+        }    
+        public Node findMid(Node head){
+            Node slow = head;
+            Node fast = head;
+            while(fast != null && fast.next != null){
+                slow = slow.next; //+1
+                fast = fast.next.next; //+2
+            }
+            return slow;
+        }       
         public void printLinkedList(){
             if(head == null){
                 System.out.println("LinkedList is empty");
@@ -145,6 +192,11 @@ public class LinkedList {
         System.out.println("last deleted node data is : "+ll.removeLast());
         ll.printLinkedList();
 
-        System.out.println("key found at index : "+ll.itrSearch(6));
+        System.out.println("key found at index : "+ll.itrSearch(3));
+        System.out.println("key found at index : "+ll.recSearch(7));
+        
+        ll.reverse();
+        ll.printLinkedList();
+        System.out.println(ll.findMid(head).data); //printing the data at middle node
     }
 }
